@@ -1,0 +1,61 @@
+---
+import Base from './Base.astro'
+import { termMap, relatedOf } from '~/lib/terms'
+
+interface Props {
+  slug: string
+}
+
+const { slug } = Astro.props
+const term = termMap.get(slug)
+if (!term) throw new Error(`용어 목록에 없는 슬러그입니다: ${slug}`)
+const related = relatedOf(slug)
+---
+
+<Base title={term.title} description={term.summary}>
+  <p class="crumb"><a href="/terms">용어</a></p>
+  <h1>{term.title}</h1>
+  <p class="lede">{term.summary}</p>
+
+  <slot />
+
+  {
+    related.length > 0 && (
+      <>
+        <h2>같이 보면 좋은 것</h2>
+        <ul class="card-list">
+          {related.map((r) => (
+            <li>
+              <a class="card-link" href={`/terms/${r.slug}`}>
+                <span class="t">{r.title}</span>
+                <span class="d">{r.summary}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </>
+    )
+  }
+
+  <div class="callout">
+    <p>
+      뜻을 알았으면 <a href="/find">동네 찾기</a>에서 내 조건에 맞는 곳을 볼 수
+      있습니다.
+    </p>
+  </div>
+</Base>
+
+<style>
+  .crumb {
+    margin: 0 0 0.75rem;
+    font-size: 0.9rem;
+  }
+  .crumb a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .crumb a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+</style>

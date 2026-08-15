@@ -1,0 +1,378 @@
+/* 만지는 조각들. 손가락으로 눌러도 잡히도록 크게 둔다. */
+
+.panel {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 1.15rem;
+  margin: 1.5rem 0 2rem;
+}
+
+/* 슬라이더 */
+
+.slider + .slider {
+  margin-top: 1.15rem;
+}
+
+.slider-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.35rem;
+}
+
+.slider-top label {
+  font-weight: 600;
+}
+
+.slider-top output {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.slider-hint {
+  margin: 0.35rem 0 0;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 2.25rem;
+  background: transparent;
+  margin: 0;
+  display: block;
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+
+input[type='range']::-moz-range-track {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 26px;
+  height: 26px;
+  margin-top: -10px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--bg);
+  box-shadow: 0 0 0 1px var(--accent);
+  cursor: pointer;
+}
+
+input[type='range']::-moz-range-thumb {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--bg);
+  box-shadow: 0 0 0 1px var(--accent);
+  cursor: pointer;
+}
+
+/* 결과 숫자 */
+
+.result {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+  margin-top: 1.25rem;
+}
+
+.result-label {
+  color: var(--muted);
+  font-size: 0.95rem;
+  width: 100%;
+}
+
+.result-value {
+  font-size: 1.6rem;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.result-sub {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.tone-ok .result-value {
+  color: var(--ok);
+}
+.tone-warn .result-value {
+  color: var(--warn);
+}
+.tone-danger .result-value {
+  color: var(--danger);
+}
+
+/* 비교 막대 */
+
+.compare {
+  width: 100%;
+  height: 46px;
+  min-width: 240px;
+  display: block;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  margin-top: 0.5rem;
+}
+
+.seg-a {
+  fill: var(--accent);
+}
+.seg-b {
+  fill: var(--surface-2);
+}
+
+.legend {
+  list-style: none;
+  margin: 0.7rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.95rem;
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dot {
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 3px;
+  flex: none;
+  border: 1px solid var(--border);
+}
+
+.dot-a {
+  background: var(--accent);
+}
+.dot-b {
+  background: var(--surface-2);
+}
+
+.legend-value {
+  margin-left: auto;
+  font-weight: 600;
+}
+
+/* 한 줄 요약 */
+
+.says {
+  margin: 1.25rem 0 0;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--accent-bg);
+  color: var(--text);
+  font-size: 0.98rem;
+}
+
+/* 고르는 조각 (동네 찾기) */
+
+.field {
+  margin-bottom: 1.5rem;
+}
+
+.field > legend,
+.field > .field-label {
+  font-weight: 700;
+  padding: 0;
+  margin-bottom: 0.6rem;
+  display: block;
+}
+
+.field-help {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: -0.35rem 0 0.6rem;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+  font: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+  min-height: 2.5rem;
+}
+
+.chip:hover {
+  border-color: var(--accent);
+}
+
+.chip[aria-pressed='true'] {
+  background: var(--accent-bg);
+  border-color: var(--accent);
+  color: var(--text);
+  font-weight: 600;
+}
+
+.chip .mark {
+  width: 0.9rem;
+  height: 0.9rem;
+  flex: none;
+}
+
+.chip-group-title {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin: 1rem 0 0.5rem;
+}
+
+select,
+input[type='text'],
+input[type='number'] {
+  font: inherit;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 0.7rem;
+  min-height: 2.75rem;
+  max-width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.btn {
+  font: inherit;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  padding: 0.7rem 1.2rem;
+  min-height: 2.9rem;
+  cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark) {
+  .btn {
+    color: #10151d;
+  }
+}
+
+.btn-quiet {
+  background: var(--bg);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+/* 결과 목록 */
+
+.hit {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.15rem;
+  background: var(--surface);
+}
+
+.hit + .hit {
+  margin-top: 0.75rem;
+}
+
+.hit-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.hit-name {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.hit-where {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.hit-score {
+  margin-left: auto;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.hit-price {
+  margin: 0.5rem 0 0.65rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0;
+  margin: 0;
+  font-size: 0.88rem;
+}
+
+.tags li {
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+  border: 1px solid var(--border);
+}
+
+.tag-hit {
+  background: var(--ok-bg);
+  color: var(--ok);
+  border-color: transparent;
+}
+
+.tag-miss {
+  background: var(--surface-2);
+  color: var(--muted);
+}
+
+.empty {
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.15rem;
+  color: var(--muted);
+  text-align: center;
+}

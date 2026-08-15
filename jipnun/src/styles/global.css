@@ -1,0 +1,342 @@
+/*
+  집눈 화면 규칙
+  - 이모지를 쓰지 않는다. 아이콘이 필요하면 인라인 SVG로 그린다.
+  - 두 색 그라디언트를 쓰지 않는다.
+  - 어려운 외래어를 쓰지 않는다. 화면에 나오는 말은 처음 보는 사람이 아는 말이어야 한다.
+  - 글자와 배경의 밝기 차이를 4.5:1 이상으로 둔다.
+  - 초보자용일수록 화면이 조용해야 한다.
+*/
+
+:root {
+  --bg: #ffffff;
+  --surface: #f6f7f9;
+  --surface-2: #eef1f5;
+  --border: #d8dde3;
+  --text: #1b1f24;
+  --muted: #565e68;
+  --accent: #1b57c4;
+  --accent-bg: #e9f0fc;
+  --ok: #1a6f47;
+  --ok-bg: #e6f3ec;
+  --warn: #9a4d06;
+  --warn-bg: #fbf0e3;
+  --danger: #b32626;
+  --danger-bg: #fbeaea;
+
+  --radius: 10px;
+  --radius-sm: 6px;
+  --maxw: 46rem;
+
+  --font: system-ui, -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic',
+    'Noto Sans KR', sans-serif;
+  --font-num: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14171a;
+    --surface: #1c2025;
+    --surface-2: #242930;
+    --border: #333a42;
+    --text: #e8ecf1;
+    --muted: #a6b0ba;
+    --accent: #82abf7;
+    --accent-bg: #1b2739;
+    --ok: #74cf9f;
+    --ok-bg: #162b21;
+    --warn: #e0a468;
+    --warn-bg: #302315;
+    --danger: #f18e8e;
+    --danger-bg: #331b1b;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.7;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.35;
+  margin: 0 0 0.5em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: 1.75rem;
+}
+h2 {
+  font-size: 1.3rem;
+  margin-top: 2.5rem;
+}
+h3 {
+  font-size: 1.05rem;
+  margin-top: 1.75rem;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: var(--accent);
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+}
+
+/* 레이아웃 */
+
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 1.15rem;
+}
+
+.site-head {
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.site-head .wrap {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  min-height: 3.5rem;
+  flex-wrap: wrap;
+}
+
+.brand {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-nav {
+  display: flex;
+  gap: 1rem;
+  margin-left: auto;
+  flex-wrap: wrap;
+}
+
+.site-nav a {
+  color: var(--muted);
+  text-decoration: none;
+  padding: 0.35rem 0;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+
+.site-nav a[aria-current='page'] {
+  color: var(--text);
+  border-bottom-color: var(--accent);
+  font-weight: 600;
+}
+
+main {
+  padding: 2rem 0 4rem;
+  display: block;
+}
+
+.site-foot {
+  border-top: 1px solid var(--border);
+  padding: 1.75rem 0 3rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.site-foot p {
+  margin: 0 0 0.4rem;
+}
+
+/* 조각 */
+
+.lede {
+  font-size: 1.1rem;
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.15rem;
+  background: var(--surface);
+}
+
+.card-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.card-link {
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.15rem;
+  background: var(--surface);
+  text-decoration: none;
+  color: var(--text);
+}
+
+.card-link:hover {
+  border-color: var(--accent);
+}
+
+.card-link .t {
+  font-weight: 700;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.card-link .d {
+  color: var(--muted);
+  font-size: 0.95rem;
+  display: block;
+}
+
+.note {
+  border-left: 3px solid var(--border);
+  padding: 0.1rem 0 0.1rem 0.9rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 1.5rem 0;
+}
+
+.callout {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.9rem 1.1rem;
+  background: var(--surface-2);
+  font-size: 0.95rem;
+  margin: 1.5rem 0;
+}
+
+.callout p:last-child {
+  margin-bottom: 0;
+}
+
+/* 접었다 펴는 상세. 초보자에게는 안 보이고, 필요한 사람만 편다. */
+details.more {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  margin: 1.5rem 0;
+}
+
+details.more > summary {
+  cursor: pointer;
+  padding: 0.85rem 1.1rem;
+  font-weight: 600;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+details.more > summary::-webkit-details-marker {
+  display: none;
+}
+
+details.more > summary::after {
+  content: '';
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  transform: rotate(45deg);
+  margin-left: auto;
+  transition: transform 0.15s;
+}
+
+details.more[open] > summary::after {
+  transform: rotate(-135deg);
+}
+
+details.more > .body {
+  padding: 0 1.1rem 1.1rem;
+}
+
+.num {
+  font-family: var(--font-num);
+  font-variant-numeric: tabular-nums;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+}
+
+.skip:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+  z-index: 10;
+  background: var(--bg);
+  padding: 0.6rem 1rem;
+  border: 2px solid var(--accent);
+  border-radius: var(--radius-sm);
+}
+
+/* 넓은 것은 스스로 가로 스크롤한다. 본문이 가로로 밀리면 안 된다. */
+.scroll-x {
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.95rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.55rem 0.7rem;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+th {
+  color: var(--muted);
+  font-weight: 600;
+}

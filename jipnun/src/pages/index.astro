@@ -1,0 +1,69 @@
+---
+import Base from '~/layouts/Base.astro'
+import { terms } from '~/lib/terms'
+---
+
+<Base
+  title="집눈"
+  ogTitle="집눈 — 부동산을 처음 보는 사람을 위한 곳"
+  description="전세가율, 갭, LTV. 부동산에서 처음 만나는 말들을 슬라이더로 직접 움직여 보면서 이해합니다. 조건을 고르면 맞는 동네도 찾아 줍니다."
+>
+  <h1>부동산, 처음이라면</h1>
+  <p class="lede">
+    집을 알아보기 시작하면 처음 듣는 말이 쏟아집니다. 전세가율, 갭, LTV, 전용면적.
+    여기서는 그 말들을 <strong>직접 당겨 보면서</strong> 이해합니다. 읽고 외우지 않아도
+    됩니다.
+  </p>
+
+  <h2>말부터 알아보기</h2>
+  <ul class="card-list">
+    {
+      terms.slice(0, 3).map((t) => (
+        <li>
+          <a class="card-link" href={`/terms/${t.slug}`}>
+            <span class="t">{t.title}</span>
+            <span class="d">{t.summary}</span>
+          </a>
+        </li>
+      ))
+    }
+    <li>
+      <a class="card-link" href="/terms">
+        <span class="t">용어 모두 보기</span>
+        <span class="d">처음 집을 볼 때 가장 자주 막히는 것부터 모았습니다.</span>
+      </a>
+    </li>
+  </ul>
+
+  <h2>내 조건에 맞는 동네 찾기</h2>
+  <ul class="card-list">
+    <li>
+      <a class="card-link" href="/find">
+        <span class="t">동네 찾기</span>
+        <span class="d">
+          이제 막 일을 시작했는지, 결혼을 앞뒀는지만 고르면 자주 보는 조건이 미리
+          켜집니다. 값과 지역을 정하면 맞는 동네가 나옵니다.
+        </span>
+      </a>
+    </li>
+  </ul>
+
+  <h2>만화로 보기</h2>
+  <ul class="card-list">
+    <li>
+      <a class="card-link" href="/webtoon">
+        <span class="t">만화</span>
+        <span class="d">
+          처음 집을 알아보며 겪은 일들을 매주 한 편씩 그립니다.
+        </span>
+      </a>
+    </li>
+  </ul>
+
+  <div class="note">
+    <p style="margin:0">
+      집눈은 무엇을 사라고 권하지 않습니다. 공개된 자료로 계산한 사실만 보여 줍니다.
+      판단은 보는 사람의 몫입니다.
+    </p>
+  </div>
+</Base>

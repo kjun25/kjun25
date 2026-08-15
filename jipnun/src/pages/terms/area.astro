@@ -1,0 +1,63 @@
+---
+import Term from '~/layouts/Term.astro'
+import Area from '~/components/react/terms/Area'
+---
+
+<Term slug="area">
+  <h2>직접 당겨 보기</h2>
+  <p>
+    전용면적을 움직여 보면 평으로 몇 평인지, 그리고 사람들이 부르는 평수가 몇 평인지가
+    같이 바뀝니다. 두 숫자가 다르다는 것이 이 화면의 전부입니다.
+  </p>
+
+  <Area client:load />
+
+  <h2>왜 두 개인가</h2>
+  <p>
+    전용면적은 우리 집 현관문 안쪽의 넓이입니다. 실제로 사는 공간입니다.
+  </p>
+  <p>
+    공급면적은 거기에 계단, 복도, 엘리베이터처럼 이웃과 같이 쓰는 공간을 나눠 더한
+    넓이입니다. 광고에 적히는 평수는 대부분 이 공급면적을 평으로 바꾼 값입니다.
+  </p>
+  <p>
+    그래서 &quot;34평&quot;이라고 적힌 집의 실제 집 안 넓이는 25평 남짓입니다. 처음
+    집을 보러 다니면 이 차이 때문에 &quot;생각보다 좁다&quot;고 느끼게 됩니다.
+  </p>
+
+  <h2>비교할 때는 전용면적으로</h2>
+  <p>
+    같은 &quot;34평&quot;이라도 아파트마다 전용률이 달라서 집 안 넓이가 다릅니다.
+    복도가 넓거나 공용 공간이 많은 아파트는 같은 평수라도 집 안이 좁습니다. 그래서
+    집을 비교할 때는 평이 아니라 전용면적을 보면 됩니다.
+  </p>
+
+  <details class="more">
+    <summary>더 자세히 — 자주 보는 크기</summary>
+    <div class="body">
+      <div class="scroll-x">
+        <table>
+          <thead>
+            <tr>
+              <th>전용면적</th>
+              <th>전용면적을 평으로</th>
+              <th>흔히 부르는 이름</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>39m²</td><td>11.8평</td><td>16평대</td></tr>
+            <tr><td>49m²</td><td>14.8평</td><td>20평대 초반</td></tr>
+            <tr><td>59m²</td><td>17.8평</td><td>24평</td></tr>
+            <tr><td>74m²</td><td>22.4평</td><td>30평대 초반</td></tr>
+            <tr><td>84m²</td><td>25.4평</td><td>34평</td></tr>
+            <tr><td>101m²</td><td>30.6평</td><td>40평대</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin:0.9rem 0 0">
+        표의 마지막 칸은 전용률에 따라 달라집니다. 정확한 값은 그 아파트의 공급면적을
+        확인해야 합니다.
+      </p>
+    </div>
+  </details>
+</Term>

@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content'
+import Base from '~/layouts/Base.astro'
+import { korDate } from '~/lib/format'
+
+const episodes = (await getCollection('webtoon', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.episode - a.data.episode
+)
+---
+
+<Base
+  title="만화"
+  description="부동산을 처음 볼 때 겪는 일들을 매주 한 편씩 만화로 그립니다. 글로 읽으면 지루한 이야기를 그림으로 봅니다."
+>
+  <h1>만화</h1>
+  <p class="lede">
+    매주 한 편씩. 처음 집을 알아보며 겪은 일들을 그립니다.
+  </p>
+
+  {
+    episodes.length === 0 ? (
+      <div class="empty">
+        <p style="margin:0">아직 올린 회차가 없습니다. 곧 첫 편이 올라옵니다.</p>
+      </div>
+    ) : (
+      <ul class="card-list">
+        {episodes.map((e) => (
+          <li>
+            <a class="card-link" href={`/webtoon/${e.id}`}>
+              <span class="t">
+                {e.data.episode}화 · {e.data.title}
+              </span>
+              <span class="d">{e.data.summary}</span>
+              <span class="d" style="margin-top:0.35rem">
+                {korDate(e.data.date)}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</Base>

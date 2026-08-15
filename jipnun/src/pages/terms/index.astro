@@ -1,0 +1,35 @@
+---
+import Base from '~/layouts/Base.astro'
+import { terms } from '~/lib/terms'
+---
+
+<Base
+  title="부동산 용어"
+  description="전세가율, 갭, LTV, DSR, 전용면적. 부동산을 처음 볼 때 막히는 말들을 슬라이더로 직접 움직여 보면서 이해합니다."
+>
+  <h1>부동산 용어</h1>
+  <p class="lede">
+    읽어서 외우는 대신 직접 움직여 보게 만들었습니다. 슬라이더를 당기면 숫자가 그 자리에서
+    바뀝니다.
+  </p>
+
+  <ul class="card-list">
+    {
+      terms.map((t) => (
+        <li>
+          <a class="card-link" href={`/terms/${t.slug}`}>
+            <span class="t">{t.title}</span>
+            <span class="d">{t.summary}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="callout">
+    <p>
+      찾는 말이 없나요? 앞으로 계속 늘려 갑니다. 지금은 처음 집을 볼 때 가장 자주
+      막히는 다섯 개부터 만들었습니다.
+    </p>
+  </div>
+</Base>

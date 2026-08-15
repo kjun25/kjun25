@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jipnun.com/sitemap-index.xml

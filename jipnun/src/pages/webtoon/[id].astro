@@ -1,0 +1,108 @@
+---
+import { getCollection, render } from 'astro:content'
+import Base from '~/layouts/Base.astro'
+import { termMap } from '~/lib/terms'
+import { korDate } from '~/lib/format'
+
+export async function getStaticPaths() {
+  const episodes = await getCollection('webtoon', ({ data }) => !data.draft)
+  return episodes.map((e) => ({ params: { id: e.id }, props: { entry: e } }))
+}
+
+const { entry } = Astro.props
+const { Content } = await render(entry)
+
+const related = entry.data.terms
+  .map((slug) => termMap.get(slug))
+  .filter((t) => Boolean(t))
+---
+
+<Base
+  title={`${entry.data.episode}화 · ${entry.data.title}`}
+  description={entry.data.summary}
+>
+  <p class="crumb"><a href="/webtoon">만화</a></p>
+  <h1>{entry.data.title}</h1>
+  <p class="meta">{entry.data.episode}화 · {korDate(entry.data.date)}</p>
+  <p class="lede">{entry.data.summary}</p>
+
+  {
+    entry.data.panels.length > 0 && (
+      <div class="panels">
+        {entry.data.panels.map((p, i) => (
+          <img
+            src={p.src}
+            alt={p.alt}
+            loading={i < 2 ? 'eager' : 'lazy'}
+            decoding="async"
+          />
+        ))}
+      </div>
+    )
+  }
+
+  <div class="prose">
+    <Content />
+  </div>
+
+  {
+    related.length > 0 && (
+      <>
+        <h2>이 편에 나온 말</h2>
+        <ul class="card-list">
+          {related.map((t) => (
+            <li>
+              <a class="card-link" href={`/terms/${t!.slug}`}>
+                <span class="t">{t!.title}</span>
+                <span class="d">{t!.summary}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </>
+    )
+  }
+</Base>
+
+<style>
+  .crumb {
+    margin: 0 0 0.75rem;
+    font-size: 0.9rem;
+  }
+  .crumb a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .meta {
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin: -0.25rem 0 1rem;
+  }
+  .panels {
+    display: grid;
+    gap: 0.5rem;
+    margin: 2rem 0;
+  }
+  .panels img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .prose :global(h2) {
+    font-size: 1.15rem;
+  }
+  .prose :global(pre) {
+    overflow-x: auto;
+    padding: 0.9rem 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 0.88rem;
+  }
+  .prose :global(code) {
+    font-family: var(--font-num);
+  }
+</style>
